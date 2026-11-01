@@ -1,0 +1,87 @@
+## infinits_sign.glb
+InfinITS_Park_Sign
+├── Wall   [mesh]
+├── Platform_Lower   [mesh]
+│   └── Platform_Upper   [mesh]
+├── Letters_InfinITS
+│   ├── Letter_i_1   [mesh]
+│   ├── Letter_n_2   [mesh]
+│   ├── Letter_f_3   [mesh]
+│   ├── Letter_i_4   [mesh]
+│   ├── Letter_n_5   [mesh]
+│   ├── Letter_I_6   [mesh]
+│   ├── Letter_T_7   [mesh]
+│   ├── Letter_S_8   [mesh]
+│   └── Stilts_InfinITS   [mesh]
+├── Letters_Park
+│   ├── Letter_P_1   [mesh]
+│   ├── Letter_a_2   [mesh]
+│   ├── Letter_r_3   [mesh]
+│   ├── Letter_k_4   [mesh]
+│   └── Stilts_Park   [mesh]
+├── Spotlights   [mesh]
+└── Signboard_ITS   [mesh]
+
+## ground.glb
+Ground
+├── Grass_Behind_Wall   [mesh]
+├── Paving_Red   [mesh]
+├── Paving_Grey   [mesh]
+├── Curb   [mesh]
+└── Sidewalk_Concrete   [mesh]
+
+## tree.glb
+Tree
+├── Trunk   [mesh]
+│   ├── Branch_1   [mesh]
+│   ├── Branch_2   [mesh]
+│   ├── Branch_3   [mesh]
+│   └── Branch_4   [mesh]
+└── Canopy
+    ├── Blob_Center   [mesh]
+    ├── Blob_1   [mesh]
+    ├── Blob_2   [mesh]
+    ├── Blob_3   [mesh]
+    ├── Blob_4   [mesh]
+    ├── Blob_5   [mesh]
+    └── Blob_6   [mesh]
+
+## cat.glb
+Cat
+└── Cat_Body   [mesh]
+    ├── Cat_Head   [mesh]
+    │   ├── Cat_Eye_L   [mesh]
+    │   ├── Cat_Ear_L   [mesh]
+    │   ├── Cat_Eye_R   [mesh]
+    │   └── Cat_Ear_R   [mesh]
+    ├── Cat_Tail1   [mesh]
+    │   └── Cat_Tail2   [mesh]
+    │       └── Cat_Tail3   [mesh]
+    ├── Cat_Leg_FL_Upper   [mesh]
+    │   └── Cat_Leg_FL_Lower   [mesh]
+    ├── Cat_Leg_FR_Upper   [mesh]
+    │   └── Cat_Leg_FR_Lower   [mesh]
+    ├── Cat_Leg_BL_Upper   [mesh]
+    │   └── Cat_Leg_BL_Lower   [mesh]
+    └── Cat_Leg_BR_Upper   [mesh]
+        └── Cat_Leg_BR_Lower   [mesh]
+
+## human.glb
+Human
+└── Human_Pelvis   [mesh]
+    ├── Human_Torso   [mesh]
+    │   ├── Human_Backpack   [mesh]
+    │   ├── Human_Head   [mesh]
+    │   ├── Human_Shoulder_L   [mesh]
+    │   │   └── Human_Elbow_L   [mesh]
+    │   │       └── Human_Wrist_L   [mesh]
+    │   └── Human_Shoulder_R   [mesh]
+    │       └── Human_Elbow_R   [mesh]
+    │           └── Human_Wrist_R   [mesh]
+    ├── Human_Hip_L   [mesh]
+    │   └── Human_Knee_L   [mesh]
+    │       └── Human_Ankle_L   [mesh]
+    └── Human_Hip_R   [mesh]
+        └── Human_Knee_R   [mesh]
+            └── Human_Ankle_R   [mesh]
+
