@@ -59,7 +59,6 @@ const M4 = {
   },
 };
 
-// Quaternion [x,y,z,w]
 const Q = {
   axis(ax, deg) { const h = deg * Math.PI / 360, s = Math.sin(h); return [ax[0] * s, ax[1] * s, ax[2] * s, Math.cos(h)]; },
   mul(a, b) {
