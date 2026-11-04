@@ -1,12 +1,4 @@
 #!/usr/bin/env python3
-"""
-Generator model 3D (GLB) untuk scene InfinITS Park - ITS.
-Semua model dibuat dari primitif (box, silinder, elipsoid, extrude) lalu
-disusun sebagai pohon node (hierarki) dan ditulis ke GLB 2.0.
-
-Konvensi:  satuan meter, Y atas, model karakter menghadap +Z.
-Jalankan:  python3 tools/build_models.py
-"""
 import io, json, math, os, struct
 from functools import reduce
 import numpy as np
