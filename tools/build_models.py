@@ -10,6 +10,7 @@ Jalankan:  python3 tools/build_models.py
 import io, json, math, os, struct
 from functools import reduce
 import numpy as np
+import platform
 from PIL import Image, ImageDraw, ImageFont
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -212,12 +213,20 @@ def tex_fur(size=256):
     return to_img(col)
 
 def font(bold=True, italic=False, size=40):
-    name = 'DejaVuSans' + ('-BoldOblique' if bold and italic else '-Bold' if bold else '-Oblique' if italic else '')
-    return ImageFont.truetype(f'/usr/share/fonts/truetype/dejavu/{name}.ttf', size)
+    cands = ['DejaVuSans-Bold.ttf', 'arialbd.ttf', 'Arial Bold.ttf', 'Helvetica.ttc',
+             '/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf',
+             'C:/Windows/Fonts/arialbd.ttf',
+             '/System/Library/Fonts/Supplemental/Arial Bold.ttf']
+    for c in cands:
+        try:
+            return ImageFont.truetype(c, size)
+        except OSError:
+            pass
+    return ImageFont.load_default(size)
 
 SIGN_W, SIGN_H = 3.9, 0.98
 SIGN_POLY = [(0.03, 0.0), (1.0, 0.0), (1.0, 1.0), (0.53, 1.0), (0.45, 0.78),
-             (0.25, 0.38), (0.09, 0.27), (0.0, 0.12)]   # koordinat normal (u,v) v ke atas
+             (0.25, 0.38), (0.09, 0.27), (0.0, 0.12)]
 
 def tex_sign():
     W, H = 1024, 256
