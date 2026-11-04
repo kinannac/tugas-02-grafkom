@@ -1,7 +1,3 @@
-// Loader GLB 2.0 minimal untuk WebGL1 (tanpa library).
-// Mendukung: node hierarchy (TRS), mesh POSITION/NORMAL/TEXCOORD_0 + indices uint16,
-// material baseColorFactor + baseColorTexture (PNG tertanam).
-
 const isPOT = n => (n & (n - 1)) === 0;
 const lin2srgb = c => Math.pow(c, 1 / 2.2);   // viewer bekerja di ruang sRGB sederhana (tanpa gamma pass)
 
@@ -24,7 +20,6 @@ async function loadGLB(gl, url) {
     const b = gl.createBuffer(); gl.bindBuffer(target, b); gl.bufferData(target, data, gl.STATIC_DRAW); return b;
   };
 
-  // --- texture
   const textures = [];
   for (const t of json.textures || []) {
     const img = json.images[t.source], v = view(img.bufferView);
@@ -49,7 +44,6 @@ async function loadGLB(gl, url) {
     textures.push(tex);
   }
 
-  // --- material
   const materials = (json.materials || []).map(m => {
     const p = m.pbrMetallicRoughness || {}, c = p.baseColorFactor || [1, 1, 1, 1];
     return {
@@ -60,7 +54,6 @@ async function loadGLB(gl, url) {
     };
   });
 
-  // --- mesh -> primitif GPU
   const meshes = (json.meshes || []).map(m => m.primitives.map(p => {
     const A = p.attributes, idxAcc = json.accessors[p.indices];
     return {
@@ -73,7 +66,6 @@ async function loadGLB(gl, url) {
     };
   }));
 
-  // --- node tree (definisi, belum diinstansiasi)
   const defOf = i => {
     const n = json.nodes[i];
     return {
@@ -85,8 +77,6 @@ async function loadGLB(gl, url) {
   return { url, root: roots[0] };
 }
 
-// Buat salinan pohon node sehingga satu asset bisa dipakai berkali-kali (mis. 6 pohon).
-// Buffer GPU dipakai bersama; yang disalin hanya transformasi lokal (t, q, s).
 function instantiate(asset, name) {
   const byName = {};
   const clone = (d, parent) => {

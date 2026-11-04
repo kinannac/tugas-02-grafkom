@@ -16,7 +16,6 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', 'models')
 os.makedirs(OUT, exist_ok=True)
 
-# ----------------------------------------------------------------- matriks
 def T(x, y, z):
     m = np.eye(4); m[:3, 3] = (x, y, z); return m
 def Rx(d):
@@ -40,7 +39,6 @@ def qmul(a, b):
     return (w1*x2 + x1*w2 + y1*z2 - z1*y2, w1*y2 - x1*z2 + y1*w2 + z1*x2,
             w1*z2 + x1*y2 - y1*x2 + z1*w2, w1*w2 - x1*x2 - y1*y2 - z1*z2)
 
-# --------------------------------------------------------------- geometri
 class Geo:
     def __init__(s): s.P = []; s.N = []; s.UV = []; s.I = []; s.n = 0
     def add(s, prim, M=None):
@@ -61,8 +59,8 @@ class Geo:
         gn = np.cross(p1 - p0, p2 - p0)
         vn = N[tri[:, 0]] + N[tri[:, 1]] + N[tri[:, 2]]
         flip = (gn * vn).sum(1) < 0
-        tri[flip] = tri[flip][:, [0, 2, 1]]            # winding CCW sesuai normal
-        tri = tri[np.linalg.norm(gn, axis=1) > 1e-12]  # buang segitiga degenerate
+        tri[flip] = tri[flip][:, [0, 2, 1]]           
+        tri = tri[np.linalg.norm(gn, axis=1) > 1e-12]
         return (P.astype(np.float32), N.astype(np.float32), UV.astype(np.float32),
                 tri.astype(np.uint32).reshape(-1))
 
@@ -173,7 +171,6 @@ def extrude_parts(poly, depth, uv=None):
 def extrude(poly, depth, uv=None):
     f, r = extrude_parts(poly, depth, uv); return cat(f, r)
 
-# ------------------------------------------------------- tekstur prosedural
 def pfield(size, sx, sy=None, seed=0):
     sy = sx if sy is None else sy
     a = np.random.default_rng(seed).normal(size=(size, size))
@@ -232,7 +229,6 @@ def tex_sign():
     d.text((700, 168), 'SAINS', font=font(True, False, 58), fill=(34, 34, 44))
     return img
 
-# ---------------------------------------------------------------- scene graph
 def srgb2lin(c): return [float(v) ** 2.2 for v in c]
 
 class Mat:
@@ -319,7 +315,6 @@ def acc(*items):
     for prim, M in items: g.add(prim, M)
     return g
 
-# =========================================================== MATERIAL
 M_CONC_WALL = Mat('concrete_wall', (1, 1, 1), tex_concrete((118, 118, 108), 8, 1), 0.95)
 M_CONC_LIGHT = Mat('concrete_light', (1, 1, 1), tex_concrete((160, 158, 150), 7, 11), 0.95)
 M_CONC_WALK = Mat('concrete_walk', (1, 1, 1), tex_concrete((178, 176, 170), 6, 21), 0.95)
@@ -347,7 +342,6 @@ M_PANTS = Mat('pants_dark', (0.14, 0.15, 0.22), None, 0.9)
 M_SHOE = Mat('shoe_white', (0.92, 0.92, 0.92), None, 0.7)
 M_BAG = Mat('backpack_yellow', (0.93, 0.72, 0.10), None, 0.8)
 
-# =========================================================== SIGN (InfinITS Park)
 TK, DP, XH, CAP, ASC = 0.28, 0.28, 1.0, 1.2, 1.4
 
 def stroke(p0, p1, th):

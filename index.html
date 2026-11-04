@@ -48,11 +48,6 @@
       </figure>
     </div>
     <div class="controls">
-      <span>Kamera:</span>
-      <button data-cam="foto">Sesuai foto</button>
-      <button data-cam="atas">Overview</button>
-      <button data-cam="kucing">Ikuti kucing</button>
-      <button data-cam="manusia">Ikuti manusia</button>
       <label><input type="checkbox" id="chkAnim" checked> Animasi</label>
       <label>Matahari <input type="range" id="rngSun" min="8" max="80" value="55"></label>
     </div>
@@ -61,12 +56,10 @@
   <section>
     <h2>Video objek asli</h2>
     <video src="assets/video_asli.mp4" controls preload="metadata"></video>
-    <p class="placeholder" style="margin-top:10px">Letakkan video asli di <code>assets/video_asli.mp4</code> (kotak hitam di atas akan terisi otomatis).</p>
   </section>
 
   <section>
     <h2>Desain tree hubungan antar objek (hierarchical model)</h2>
-    <p style="margin-top:0">Pohon ini dibuat otomatis dari scene graph yang dimuat dari file GLB. Transformasi anak selalu relatif terhadap induknya.</p>
     <div id="tree"></div>
   </section>
 </main>

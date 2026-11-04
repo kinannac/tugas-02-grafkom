@@ -1,8 +1,6 @@
-// Utilitas matriks 4x4 column-major (kompatibel dengan gl.uniformMatrix4fv, transpose=false)
 const M4 = {
   identity() { const o = new Float32Array(16); o[0] = o[5] = o[10] = o[15] = 1; return o; },
 
-  // out = a * b
   mul(a, b, out = new Float32Array(16)) {
     for (let c = 0; c < 4; c++)
       for (let r = 0; r < 4; r++) {
@@ -36,7 +34,6 @@ const M4 = {
     return o;
   },
 
-  // Translate * Rotate(quaternion) * Scale  -> matriks lokal sebuah node
   fromTRS(t, q, s, o = new Float32Array(16)) {
     const [x, y, z, w] = q, xx = x * x, yy = y * y, zz = z * z, xy = x * y, xz = x * z, yz = y * z, wx = w * x, wy = w * y, wz = w * z;
     o[0] = (1 - 2 * (yy + zz)) * s[0]; o[1] = 2 * (xy + wz) * s[0]; o[2] = 2 * (xz - wy) * s[0]; o[3] = 0;
@@ -46,7 +43,6 @@ const M4 = {
     return o;
   },
 
-  // inverse-transpose dari 3x3 kiri-atas (untuk transformasi normal)
   normal3(m, o = new Float32Array(9)) {
     const a = (r, c) => m[c * 4 + r];
     const c00 = a(1, 1) * a(2, 2) - a(1, 2) * a(2, 1), c01 = -(a(1, 0) * a(2, 2) - a(1, 2) * a(2, 0)), c02 = a(1, 0) * a(2, 1) - a(1, 1) * a(2, 0);
